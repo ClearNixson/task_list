@@ -20,7 +20,7 @@ class TaskManagerApp extends StatelessWidget {
 class Task {
   String name;
   bool isCompleted;
-  String priority; // Optional: For graduate students
+  String priority;
 
   Task({required this.name, this.isCompleted = false, this.priority = 'Low'});
 }
@@ -32,7 +32,7 @@ class TaskListScreen extends StatefulWidget {
 
 class _TaskListScreenState extends State<TaskListScreen> {
   final TextEditingController _taskController = TextEditingController();
-  String _selectedPriority = 'Low'; // Optional: For graduate students
+  String _selectedPriority = 'Low';
   List<Task> _tasks = [];
 
   void _addTask() {
@@ -41,7 +41,7 @@ class _TaskListScreenState extends State<TaskListScreen> {
     setState(() {
       _tasks.add(Task(
         name: _taskController.text,
-        priority: _selectedPriority, // Optional: For graduate students
+        priority: _selectedPriority,
       ));
       _taskController.clear();
     });
@@ -82,7 +82,6 @@ class _TaskListScreenState extends State<TaskListScreen> {
                   ),
                 ),
                 SizedBox(width: 10),
-                // Priority Dropdown (Optional: For graduate students)
                 DropdownButton<String>(
                   value: _selectedPriority,
                   onChanged: (String? newValue) {
@@ -99,7 +98,6 @@ class _TaskListScreenState extends State<TaskListScreen> {
                   }).toList(),
                 ),
                 SizedBox(width: 10),
-                // Add Button
                 ElevatedButton(
                   onPressed: _addTask,
                   child: Text('Add'),
@@ -107,7 +105,6 @@ class _TaskListScreenState extends State<TaskListScreen> {
               ],
             ),
             SizedBox(height: 20),
-            // Task List
             Expanded(
               child: ListView.builder(
                 itemCount: _tasks.length,
@@ -130,7 +127,7 @@ class _TaskListScreenState extends State<TaskListScreen> {
                               : TextDecoration.none,
                         ),
                       ),
-                      subtitle: Text('Priority: ${task.priority}'), // Optional: For graduate students
+                      subtitle: Text('Priority: ${task.priority}'),
                       trailing: IconButton(
                         icon: Icon(Icons.delete, color: Colors.red),
                         onPressed: () {
